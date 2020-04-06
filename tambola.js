@@ -213,7 +213,7 @@ module.exports = {
       if(isValid){
         tickets.push(ticket);
       }
-    } while(tickets.length == count)
+    } while(tickets.length == count);
     return tickets;
   },
   
