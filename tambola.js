@@ -68,7 +68,7 @@ var ticketMethods = {
   
   //Given a ticket and random value, determine where the value should go into
   getIndexToThrowInto: function(ticket,value){
-    var columnToObserve = Math.ceil((value-1)/10)-1; //Observe the column based on #Rule-2
+    var columnToObserve = Math.ceil((value+1)/10)-1; //Observe the column based on #Rule-2
     if(value == 90) {
       columnToObserve = 8;
     }
