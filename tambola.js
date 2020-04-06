@@ -47,7 +47,8 @@ var ticketMethods = {
       }
     }
     return validity;
-  }
+  },
+  
   //Initialize the numbers array with numbers from 1 to 90
   initializeNumbers: function(){
     _numbers = [];
@@ -55,6 +56,7 @@ var ticketMethods = {
       _numbers.push(a);
     }
   },
+    
   //Get a random number from the remaining numbers in the array
   getNextRandom: function(){
     //Generate a random index instead of a random number from the array
@@ -63,6 +65,7 @@ var ticketMethods = {
     var value = _numbers[idx];
     return value;
   },
+  
   //Given a ticket and random value, determine where the value should go into
   getIndexToThrowInto: function(ticket,value){
     var columnToObserve = Math.ceil((value-1)/10)-1; //Observe the column based on #Rule-2
@@ -81,6 +84,7 @@ var ticketMethods = {
     }
     return indices;
   },
+  
   //Given a ticket, ensure that all values in column are sorted based on #Rule-3
   sortColumns: function(ticket){
     //For each column in the ticket
@@ -122,6 +126,7 @@ var ticketMethods = {
     }
     return ticket;
   },
+  
   //Based on the ticket, remove based on #Rule-1 and #Rule-3
   removeValuesUsed: function(ticket){
     var numbersToBeRemoved = [];
@@ -149,15 +154,18 @@ var ticketMethods = {
       });
     }
   }
+  
 }
 
 var drawMethods = {
+  
   initializeDrawNumbers: function(){
     _drawNumbers = [];
     for(var a=1;a<=90;a++){
       _drawNumbers.push(a);
     }
   },
+  
   getNextDraw: function(){
     //Generate a random index instead of a random number from the array
     var idx = getRandomArbitrary(0,_drawNumbers.length);
@@ -166,6 +174,7 @@ var drawMethods = {
     _drawNumbers.splice(idx,1);
     return value;
   }
+  
 }
 
 //Generates a random number between two numbers
@@ -175,6 +184,7 @@ function getRandomArbitrary(min, max) {
 
 
 module.exports = {
+  
   //Return an array of tickets based on input count
   getTickets: function(count){
     var tickets = [];
@@ -206,6 +216,7 @@ module.exports = {
     } while(tickets.length == count)
     return tickets;
   },
+  
   //Return an array numbers from 1 to 90 in a random distribution for a draw
   getDrawSequence: function(){
     var sequence = [];
@@ -215,4 +226,5 @@ module.exports = {
     }
     return sequence;
   }
+  
 }
