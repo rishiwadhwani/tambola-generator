@@ -1,13 +1,11 @@
 # tambola-generator
 A library for generating tambola tickets and the draw sequence
 
-[Home / demo page](http://tambolatickets.herokuapp.com/)
-
 ## Installation
 We use **npm** for dependency management, run
 
 ```shell
-npm install --save tambola-generator
+npm install --save https://github.com/rishiwadhwani/tambola-generator/tarball/master
 ```
 
 ## Usage
@@ -31,14 +29,14 @@ tambola.getDrawSequence() //Returns numbers 1-90 scrambled
 // Tickets array
 [
   [
-    [0,18,23,40,48,0,0,73,0],
-    [5,0,0,0,42,52,0,80,83],
-    [0,20,0,0,49,58,65,0,85]
+    [0,18,23,30,40,0,0,0,80],
+    [5,0,0,0,42,52,0,75,87],
+    [0,0,20,0,49,58,65,0,90]
   ],
   [
-    [10,0,21,34,0,0,65,0,83],
-    [0,11,0,36,41,0,62,0,85],
-    [0,19,26,37,43,0,67,0,0]
+    [0,10,21,34,0,52,0,0,83],
+    [0,11,0,36,41,0,0,72,85],
+    [9,0,26,37,43,0,67,0,0]
   ]
 ]
 ```
