@@ -6,9 +6,9 @@
 //
 // RULE #1 -  Each row cannot have more than 5 numbers
 // RULE #2 -  Each column is assigned a range of numbers only:
-//            1-10 can appear only in column 1
-//            11-20 can appear only in column 2
-//            81-90 can appear only in column 9
+//            1-9 can appear only in column 1
+//            10-19 can appear only in column 2
+//            80-90 can appear only in column 9
 // RULE #3 -  In a specific column, numbers must be arranged in ascending order
 //            from top to bottom
 
@@ -36,6 +36,18 @@ var _drawNumbers;
 
 //Ticket generator helper methods
 var ticketMethods = {
+  
+  // Check if ticket is Valid (There should not be any column without numbers)
+  isTicketValid: function(ticket){
+    var validity = true;
+    for(var a=0;a<9;a++){
+      if(!(ticket[a][0] || ticket[a][1] || ticket[a][2])){
+        validity = false;
+        break;
+      }
+    }
+    return validity;
+  }
   //Initialize the numbers array with numbers from 1 to 90
   initializeNumbers: function(){
     _numbers = [];
@@ -53,7 +65,10 @@ var ticketMethods = {
   },
   //Given a ticket and random value, determine where the value should go into
   getIndexToThrowInto: function(ticket,value){
-    var columnToObserve = Math.ceil(value/10)-1; //Observe the column based on #Rule-2
+    var columnToObserve = Math.ceil((value-1)/10)-1; //Observe the column based on #Rule-2
+    if(value == 90) {
+      columnToObserve = 8;
+    }
     var indices = [];
     //Observe items in all the rows of particular column
     //If any of the values are still 0, choose that row
@@ -163,7 +178,8 @@ module.exports = {
   //Return an array of tickets based on input count
   getTickets: function(count){
     var tickets = [];
-    for(var i=0;i<count;i++){
+    var isValid = true;
+    do {
       ticketMethods.initializeNumbers();
       var ticket = [
         [0,0,0,0,0,0,0,0,0],
@@ -183,8 +199,11 @@ module.exports = {
         }
       }
       ticket = ticketMethods.sortColumns(ticket);
-      tickets.push(ticket);
-    }
+      isValid = ticketMethods.isTicketValid(ticket);
+      if(isValid){
+        tickets.push(ticket);
+      }
+    } while(tickets.length == count)
     return tickets;
   },
   //Return an array numbers from 1 to 90 in a random distribution for a draw
