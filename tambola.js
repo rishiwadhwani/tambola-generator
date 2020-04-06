@@ -41,7 +41,7 @@ var ticketMethods = {
   isTicketValid: function(ticket){
     var validity = true;
     for(var a=0;a<9;a++){
-      if(!(ticket[a][0] || ticket[a][1] || ticket[a][2])){
+      if(!(ticket[0][a] || ticket[1][a] || ticket[2][a])){
         validity = false;
         break;
       }
