@@ -90,17 +90,19 @@ var ticketMethods = {
     //For each column in the ticket
     for(var col=0;col<9;col++){
       //If all three rows are populated
-      if(ticket[0][col] != 0 && ticket[1][col] !=0 && ticket[2][col]!=0){
-        for(var r=0;r<2;r++){
-          if(ticket[r][col] > ticket[r+1][col]){
-            var temp = ticket[r][col];
-            ticket[r][col] = ticket[r+1][col];
-            ticket[r+1][col] = temp;
+      if(ticket[0][col] != 0 && ticket[1][col] != 0 && ticket[2][col] != 0){
+        for (var i = 0; i < 2; i++) {
+          for (var j = i+1; j < 3; j++) {
+            if (ticket[i][col] > ticket[j][col]) {
+              var temp = ticket[i][col];
+              ticket[i][col] = ticket[j][col];
+              ticket[j][col] = temp;
+            }
           }
         }
       }
       //If 1st and 2nd rows are populated
-      else if(ticket[0][col]!=0 && ticket[1][col]!=0 && ticket[2][col]==0){
+      else if(ticket[0][col] != 0 && ticket[1][col] != 0 && ticket[2][col] == 0){
         if(ticket[0][col] > ticket[1][col]){
           var temp = ticket[0][col];
           ticket[0][col] = ticket[1][col];
@@ -108,7 +110,7 @@ var ticketMethods = {
         }
       }
       //If 1st and 3rd rows are populated
-      else if(ticket[0][col]!=0 && ticket[1][col]==0 && ticket[2][col]!=0){
+      else if(ticket[0][col] != 0 && ticket[1][col] == 0 && ticket[2][col] != 0){
         if(ticket[0][col] > ticket[2][col]){
           var temp = ticket[0][col];
           ticket[0][col] = ticket[2][col];
@@ -116,7 +118,7 @@ var ticketMethods = {
         }
       }
       //If 2nd and 3rd rows are populated
-      else if(ticket[0][col]==0 && ticket[1][col]!=0 && ticket[2][col]!=0){
+      else if(ticket[0][col] == 0 && ticket[1][col] != 0 && ticket[2][col] != 0){
         if(ticket[1][col] > ticket[2][col]){
           var temp = ticket[1][col];
           ticket[1][col] = ticket[2][col];
